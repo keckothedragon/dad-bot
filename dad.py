@@ -76,4 +76,4 @@ async def on_message(message):
                 await message.channel.send("why")
             await message.channel.send("SPECIAL MODE DISENGAGED")
 
-client.run("MTA3NzcyNDg1NjQzNjY1NDEzMA.GrRPtQ.lrB30EDFK2kqrb3nvY8VotSSf7_c2WI4iTRANw")
+client.run()
