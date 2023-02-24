@@ -10,7 +10,7 @@ def getName(s: str, target: str):
     return splitSoonest(s)
 
 def splitSoonest(s: str):
-    splits = ['\"','.',')','(','?','!']
+    splits = ['\"','.',')','(','?','!','\'']
     for c in s:
         if c in splits:
             return s.split(c)[0]
