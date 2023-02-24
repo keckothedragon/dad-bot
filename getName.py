@@ -1,5 +1,3 @@
-# from dad import getName
-
 def getName(s: str, target: str):
     if " im " in s:
         s = s.split(" " + target + " ",1)

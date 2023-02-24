@@ -1,18 +1,7 @@
 import discord
-import os
+from time import sleep
+from random import randint
 from getName import getName
-
-# def getName(s: str, target: str):
-#     if target == "im":
-#         if s.startswith("im "):
-#             s = s.split(target)[1]
-#             print(s)
-#             s = s.split()
-#             print(s)
-#     else:
-#         s = s.split(target)[1]
-#         s = s.split()
-#         return s[0]
 
 client = discord.Client(intents=discord.Intents.all())
 
@@ -68,5 +57,23 @@ async def on_message(message):
     if response:
         await message.channel.send(response)
 
+    else:
+        num = randint(1, 5000)
+        print(num)
+        if num == 422 or message.content == "special.py":
+            await message.channel.send("SPECIAL MODE ENGAGING... (randint(1,5000) == 422)")
+            await message.channel.send("5")
+            sleep(1)
+            await message.channel.send("4")
+            sleep(1)
+            await message.channel.send("3")
+            sleep(1)
+            await message.channel.send("2")
+            sleep(1)
+            await message.channel.send("1")
+            sleep(1)
+            for i in range(30):
+                await message.channel.send("why")
+            await message.channel.send("SPECIAL MODE DISENGAGED")
 
 client.run()
