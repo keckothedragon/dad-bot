@@ -60,7 +60,7 @@ async def on_message(message):
     else:
         num = randint(1, 5000)
         print(num)
-        if num == 422 or message.content == "special.py":
+        if num == 422:
             await message.channel.send("SPECIAL MODE ENGAGING... (randint(1,5000) == 422)")
             await message.channel.send("5")
             sleep(1)
@@ -76,4 +76,4 @@ async def on_message(message):
                 await message.channel.send("why")
             await message.channel.send("SPECIAL MODE DISENGAGED")
 
-client.run()
+client.run("MTA3NzcyNDg1NjQzNjY1NDEzMA.GrRPtQ.lrB30EDFK2kqrb3nvY8VotSSf7_c2WI4iTRANw")
