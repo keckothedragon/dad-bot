@@ -67,5 +67,5 @@ async def on_message(message):
                 sleep(0.5)
             await message.channel.send("SPECIAL MODE DISENGAGED")
 
-client.run('MTA3NzcyNDg1NjQzNjY1NDEzMA.GSxoef.4cFQuPns3v-dEvvCwtEude-YU8leN4D9ZRlWAo')
+client.run('')
 # token goes here
