@@ -1,6 +1,6 @@
 def getName(s: str, target: str):
     if " im " in s:
-        s = s.split(" " + target + " ",1)
+        s = s.split(" " + target + " ", 1)
         while not s[1]:
             s.pop(1)
         s = s[1]
