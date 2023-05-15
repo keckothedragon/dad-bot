@@ -4,6 +4,7 @@ from random import randint
 from getName import getName
 from dotenv import load_dotenv
 import os
+import constants
 
 load_dotenv()
 
@@ -22,40 +23,30 @@ async def on_message(message):
 
     response = ""
 
-    # if message.content.startswith('$hello'):
-    #     response = 'Hello!'
-
     containsDadJoke = False
 
-    if "<@1077724856436654130>" in message.content:
-        # if dad-bot is @mentioned
+    if f"<@{constants.selfID}>" in message.content:
+        # dad-bot is @mentioned
         response = f"<@{message.author.id}>"
 
     elif "test" in message.content:
         response = "LMAO"
 
-    elif "Im" in message.content:
-        response = getName(message.content, "Im")
-        containsDadJoke = True
-    elif " im " in message.content or message.content.startswith("im "):
+    elif "im" in message.content.lower():
         response = getName(message.content, "im")
         containsDadJoke = True
-    elif "I'm" in message.content:
-        response = getName(message.content, "I'm")
+    elif "i am" in message.content.lower():
+        response = getName(message.content, "i am")
         containsDadJoke = True
-    elif "i'm" in message.content:
+    elif "i'm" in message.content.lower():
         response = getName(message.content, "i'm")
         containsDadJoke = True
-    elif "I am" in message.content:
-        response = getName(message.content, "I am")
-        containsDadJoke = True
-    elif "i am" in message.content:
-        response = getName(message.content, "i am")
+    elif "i’m" in message.content.lower():
+        response = getName(message.content, "i’m")
         containsDadJoke = True
     
     if containsDadJoke:
-        response = "Hi, " + response
-        response = response.rstrip(' ') + ". I'm Dad."
+        response = "Hi, " + response.strip() + ". I'm Dad."
 
     if response:
         print("Sending message: " + response)
@@ -82,4 +73,3 @@ async def on_message(message):
             await message.channel.send("SPECIAL MODE DISENGAGED")
 
 client.run(os.getenv("TOKEN"))
-# token goes here

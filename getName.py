@@ -1,17 +1,17 @@
-def getName(s: str, target: str):
-    if " im " in s:
-        s = s.split(" " + target + " ", 1)
-        while not s[1]:
-            s.pop(1)
-        s = s[1]
-    else:
-        s = s.split(target)[1]
-    s = s.strip(' ')
-    return splitSoonest(s)
+import constants
 
-def splitSoonest(s: str):
-    splits = ['\"','.',')','(','?','!','\'']
-    for c in s:
-        if c in splits:
-            return s.split(c)[0]
-    return s
+def getName(s: str, target: str):
+    startIndex = s.lower().index(target) + len(target)
+    endIndex = indexSoonest(s.lower(), startIndex)
+    return s[startIndex : endIndex]
+
+def indexSoonest(s: str, start: int):
+    earliest = len(s)
+    for x in constants.splits:
+        try:
+            i = s.index(x)
+        except:
+            continue
+        if i < earliest and i > start:
+            earliest = i
+    return earliest
