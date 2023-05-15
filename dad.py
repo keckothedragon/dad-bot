@@ -35,13 +35,13 @@ async def on_message(message):
     elif "im " in message.content.lower():
         response = getName(message.content, "im")
         containsDadJoke = True
-    elif "i am" in message.content.lower():
+    elif "i am " in message.content.lower():
         response = getName(message.content, "i am")
         containsDadJoke = True
-    elif "i'm" in message.content.lower():
+    elif "i'm " in message.content.lower():
         response = getName(message.content, "i'm")
         containsDadJoke = True
-    elif "i’m" in message.content.lower():
+    elif "i’m " in message.content.lower():
         response = getName(message.content, "i’m")
         containsDadJoke = True
     

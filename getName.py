@@ -9,7 +9,7 @@ def indexSoonest(s: str, start: int):
     earliest = len(s)
     for x in constants.splits:
         try:
-            i = s.index(x)
+            i = s.find(x, start)
         except:
             continue
         if i < earliest and i > start:
