@@ -32,16 +32,16 @@ async def on_message(message):
     elif "test" in message.content:
         response = "LMAO"
 
-    elif "im " in message.content.lower():
+    elif " im " in message.content.lower() or message.content.lower().startswith("im "):
         response = getName(message.content, "im")
         containsDadJoke = True
-    elif "i am " in message.content.lower():
+    elif " i am " in message.content.lower() or message.content.lower().startswith("i am "):
         response = getName(message.content, "i am")
         containsDadJoke = True
-    elif "i'm " in message.content.lower():
+    elif " i'm " in message.content.lower() or message.content.lower().startswith("i'm "):
         response = getName(message.content, "i'm")
         containsDadJoke = True
-    elif "i’m " in message.content.lower():
+    elif " i’m " in message.content.lower() or message.content.lower().startswith("i’m "):
         response = getName(message.content, "i’m")
         containsDadJoke = True
     
