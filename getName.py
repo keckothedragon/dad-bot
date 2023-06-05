@@ -6,6 +6,9 @@ def getName(s: str, target: str):
     return s[startIndex : endIndex]
 
 def indexSoonest(s: str, start: int):
+    if "http" in s:
+        # wanted to make it so dad-bot can send gifs
+        return len(s)
     earliest = len(s)
     for x in constants.splits:
         try:
