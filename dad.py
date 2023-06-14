@@ -54,9 +54,8 @@ async def on_message(message):
 
     else:
         num = randint(1, 1000)
-        print(num)
-        if num == 422:
-            await message.channel.send("SPECIAL MODE ENGAGING... (randint(1,1000) == 422)")
+        if num == 422 or constants.secret in message.content:
+            await message.reply("SPECIAL MODE ENGAGING... (randint(1,1000) == 422)")
             await message.channel.send("5")
             sleep(1)
             await message.channel.send("4")
