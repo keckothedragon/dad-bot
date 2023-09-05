@@ -49,6 +49,10 @@ async def on_message(message):
         response = "Hi, " + response.strip() + ". I'm Dad."
 
     if response:
+        if message.guild.id in constants.boycott:
+            print("Boycotting message: " + response)
+            await message.channel.send(constants.boycottMsg)
+            return
         print("Sending message: " + response)
         await message.channel.send(response)
 
