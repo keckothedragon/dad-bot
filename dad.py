@@ -21,6 +21,14 @@ async def on_message(message):
     
     print(f"Received message: {message.content}")
 
+    if message.content.startswith(".say") and message.author.id in constants.authorizedUsers:
+        cmd = message.content.split()[1:]
+        channelId, msg = cmd[0], " ".join(cmd[1:])
+        channel = await client.fetch_channel(channelId)
+        print(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
+        await channel.send(msg)
+        return
+
     response = ""
 
     containsDadJoke = False
@@ -53,9 +61,9 @@ async def on_message(message):
         await message.channel.send(response)
 
     else:
-        num = randint(1, 1000)
+        num = randint(1, 5000)
         if num == 422 or constants.secret in message.content:
-            await message.reply("SPECIAL MODE ENGAGING... (randint(1,1000) == 422)")
+            await message.reply("SPECIAL MODE ENGAGING... (randint(1,5000) == 422)")
             await message.channel.send("5")
             sleep(1)
             await message.channel.send("4")
