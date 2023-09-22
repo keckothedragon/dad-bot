@@ -27,6 +27,7 @@ async def on_message(message):
         channel = await client.fetch_channel(channelId)
         print(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
         await channel.send(msg)
+        await message.channel.send(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
         return
 
     response = ""
