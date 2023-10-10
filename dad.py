@@ -5,6 +5,7 @@ from getName import getName
 from dotenv import load_dotenv
 import os
 import constants
+from calcDays import calcDaysSinceTimeStamp
 
 load_dotenv()
 
@@ -20,6 +21,12 @@ async def on_message(message):
         return
     
     print(f"Received message: {message.content}")
+
+    x = randint(1, constants.doomsdayChance)
+    if x < calcDaysSinceTimeStamp():
+        print(f"Message failed: {x} < {calcDaysSinceTimeStamp()} " +
+              f"({(constants.doomsdayChance - calcDaysSinceTimeStamp()) / constants.doomsdayChance * 100}% chance of fail)")
+        return
 
     if message.content.startswith(".say") and message.author.id in constants.authorizedUsers:
         cmd = message.content.split()[1:]
