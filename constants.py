@@ -9,3 +9,5 @@ authorizedUsers = {726150411475484713}
 doomsdayPath = "./doomsday.txt"
 
 doomsdayChance = 15
+
+killPath = "./kill.txt"

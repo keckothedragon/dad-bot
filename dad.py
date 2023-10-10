@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 import constants
 from calcDays import calcDaysSinceTimeStamp
+from kill import isDed, kill, unkill
 
 load_dotenv()
 
@@ -13,20 +14,19 @@ client = discord.Client(intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
+    unkill()
     print(f'We have logged in as {client.user}')
 
 @client.event
 async def on_message(message):
+    if isDed():
+        print("im ded lol")
+        return
+    
     if message.author == client.user:
         return
     
     print(f"Received message: {message.content}")
-
-    x = randint(1, constants.doomsdayChance)
-    if x < calcDaysSinceTimeStamp():
-        print(f"Message failed: {x} < {calcDaysSinceTimeStamp()} " +
-              f"({(constants.doomsdayChance - calcDaysSinceTimeStamp()) / constants.doomsdayChance * 100}% chance of fail)")
-        return
 
     if message.content.startswith(".say") and message.author.id in constants.authorizedUsers:
         cmd = message.content.split()[1:]
@@ -35,6 +35,16 @@ async def on_message(message):
         print(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
         await channel.send(msg)
         await message.channel.send(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
+        return
+
+    if message.content.startswith(".kill") and message.author.id in constants.authorizedUsers:
+        kill()
+        await message.channel.send("bye")
+
+    x = randint(1, constants.doomsdayChance)
+    if x < calcDaysSinceTimeStamp():
+        print(f"Message failed: {x} < {calcDaysSinceTimeStamp()} " +
+              f"({(constants.doomsdayChance - calcDaysSinceTimeStamp()) / constants.doomsdayChance * 100}% chance of fail)")
         return
 
     response = ""
