@@ -5,6 +5,7 @@ from getName import getName
 from dotenv import load_dotenv
 import os
 import constants
+from kill import isDed, kill, unkill
 
 load_dotenv()
 
@@ -12,10 +13,15 @@ client = discord.Client(intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
+    unkill()
     print(f'We have logged in as {client.user}')
 
 @client.event
 async def on_message(message):
+    if isDed():
+        print("im ded lol")
+        return
+
     if message.author == client.user:
         return
     
@@ -29,6 +35,10 @@ async def on_message(message):
         await channel.send(msg)
         await message.channel.send(f"Sending {msg} to #{channel.name} in {channel.guild.name}")
         return
+
+    if message.content.startswith(".kill") and message.author.id in constants.authorizedUsers:
+        kill()
+        await message.channel.send("bye")
 
     response = ""
 
@@ -76,6 +86,8 @@ async def on_message(message):
             await message.channel.send("1")
             sleep(1)
             for _ in range(30):
+                if isDed():
+                    break
                 await message.channel.send("why")
                 sleep(0.5)
             await message.channel.send("SPECIAL MODE DISENGAGED")
